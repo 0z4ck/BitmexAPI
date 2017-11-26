@@ -25,7 +25,7 @@ from util.api_key import generate_nonce, generate_signature
 # On connect, it synchronously asks for a push of all this data then returns.
 # Right after, the MM can start using its data. It will be updated in realtime, so the MM can
 # poll really often if it wants.
-class BitMEXWebsocket():
+class BitmexAPI():
 
     # Don't grow a table larger than this amount. Helps cap memory usage.
     MAX_TABLE_LEN = 2000
@@ -189,9 +189,6 @@ class BitMEXWebsocket():
         '''Send a raw command.'''
         self.ws.send(json.dumps({"op": command, "args": args}))
 
-    def send_command(self, command, args=[]):
-        '''Send a raw command.'''
-        self.ws.send(json.dumps({"op": command, "args": args}))
 
     def __on_message(self, ws, message):
         '''Handler for parsing WS messages.'''
@@ -227,8 +224,8 @@ class BitMEXWebsocket():
 
                     # Limit the max length of the table to avoid excessive memory usage.
                     # Don't trim orders because we'll lose valuable state if we do.
-                    if len(self.data[table]) > BitMEXWebsocket.MAX_TABLE_LEN:
-                        self.data[table] = self.data[table][(BitMEXWebsocket.MAX_TABLE_LEN / 2):]
+                    if len(self.data[table]) > BitmexAPI.MAX_TABLE_LEN:
+                        self.data[table] = self.data[table][(BitmexAPI.MAX_TABLE_LEN / 2):]
 
                 elif action == 'update':
                     self.logger.debug('%s: updating %s' % (table, message['data']))
@@ -271,10 +268,10 @@ class BitMEXWebsocket():
     def __validate(self, kwargs):
         '''Simple method that ensure the user sent the right args to the method.'''
         if 'symbol' not in kwargs:
-            self.logger.error("A symbol must be provided to BitMEXWebsocket()")
+            self.logger.error("A symbol must be provided to BitmexAPI()")
             sys.exit(1)
         if 'endpoint' not in kwargs:
-            self.logger.error("An endpoint (BitMEX URL) must be provided to BitMEXWebsocket()")
+            self.logger.error("An endpoint (BitMEX URL) must be provided to BitmexAPI()")
             sys.exit(1)
         if 'api_key' not in kwargs:
             self.logger.error("No authentication provided! Unable to connect.")

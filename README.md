@@ -14,15 +14,15 @@ Python 2.7.14 (default, Sep 22 2017, 15:49:07)
 Type "help", "copyright", "credits" or "license" for more information.
 >>>
 >>> import logging
->>> from bitmex_api import BitMEXWebsocket
+>>> from bitmex_api import BitmexAPI
 >>>
->>> ws = BitMEXWebsocket(endpoint="https://testnet.bitmex.com/api/v1", symbol="XBTUSD",api_key="your_key",api_secret="your_secret")
+>>> bitmex = BitmexAPI(endpoint="https://testnet.bitmex.com/api/v1", symbol="XBTUSD",api_key="your_key",api_secret="your_secret")
 >>>
 >>> logger = logging.getLogger()
 >>>
 >>> logger.setLevel(logging.INFO)
 >>> 
->>> logger.info(dir(ws))
+>>> logger.info(dir(bitmex))
 
 ```
 
