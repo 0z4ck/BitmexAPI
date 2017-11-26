@@ -4,7 +4,7 @@ This is a reference adapter for receiving realtime data from the BitMEX API. See
 
 ### Usage
 
-Edit main.py to include your credentials. I recommend starting out on the
+Run in the interactive shell first. Create an instance and include your credentials. I recommend starting out on the
 [Testnet](https://testnet.bitmex.com).
 
 ```bash
