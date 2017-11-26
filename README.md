@@ -8,13 +8,19 @@ Edit main.py to include your credentials. I recommend starting out on the
 [Testnet](https://testnet.bitmex.com).
 
 ```bash
-python setup.py install
-python main.py
-> 2015-07-29 11:30:09,870 - bitmex_websocket - INFO - Connecting to wss://testnet.bitmex.com/realtime?subscribe=execution:XBTN15,order:XBTN15,orderBook25:XBTN15,position:XBTN15,quote:XBTN15,trade:XBTN15,margin
-> 2015-07-29 11:30:09,870 - bitmex_websocket - INFO - Authenticating with email/password.
-> 2015-07-29 11:30:10,872 - bitmex_websocket - INFO - Connected to WS.
-> 2015-07-29 11:30:11,081 - bitmex_websocket - INFO - Got all market data. Starting.
-> 2015-07-29 11:30:11,082 - root - INFO - Instrument data: {u'quoteCurrency': u'USD', u'askPrice': 282.33, ....
+[username@hostname]$ python
+Python 2.7.14 (default, Sep 22 2017, 15:49:07) 
+[GCC 4.4.7 20120313 (Red Hat 4.4.7-18)] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+>>>
+>>> ws = BitMEXWebsocket(endpoint="https://testnet.bitmex.com/api/v1", symbol="XBTUSD",api_key="your_key",api_secret="your_secret")
+>>>
+>>> logger = logging.getLogger()
+>>>
+>>> logger.setLevel(logging.CRITICAL)
+>>> 
+>>> usage = dir(ws)
+
 ```
 
 
