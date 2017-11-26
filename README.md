@@ -13,13 +13,16 @@ Python 2.7.14 (default, Sep 22 2017, 15:49:07)
 [GCC 4.4.7 20120313 (Red Hat 4.4.7-18)] on linux2
 Type "help", "copyright", "credits" or "license" for more information.
 >>>
+>>> import logging
+>>> from bitmex_api import BitMEXWebsocket
+>>>
 >>> ws = BitMEXWebsocket(endpoint="https://testnet.bitmex.com/api/v1", symbol="XBTUSD",api_key="your_key",api_secret="your_secret")
 >>>
 >>> logger = logging.getLogger()
 >>>
->>> logger.setLevel(logging.CRITICAL)
+>>> logger.setLevel(logging.INFO)
 >>> 
->>> usage = dir(ws)
+>>> logger.info(dir(ws))
 
 ```
 
